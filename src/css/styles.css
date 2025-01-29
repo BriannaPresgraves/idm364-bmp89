@@ -1,7 +1,55 @@
 :root {
-    --beige: #F5EDE1;
+    --white: #ffffff;
+    --lightblue: #e2f4fc;
+    --lightgrey: #e6e5e1;
+    --grey: #e3e3e3;
+    --gold: #e8c8a1;
+    --pink: #F6828C;
+    --purple: #A167A5;
+    --blue: #293b7a;
+    --darkblue: #2b2d42;
+    --darkgrey: #2e2e2e;
+    --black: #000000;
 }
 
 body {
-    background-color: var(--beige);
+    background-color: var(--white);
+    color: var(--black);
+    font-family:Arial, Helvetica, sans-serif;
 }
+
+header {
+    background-color: var(--lightblue);
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -7px;
+    margin-top: -7px;
+    margin-right: -7px;
+    padding-left: 15px;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+footer {
+    background-color: var(--lightblue);
+    color: var(--black);
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 14px;
+    text-align: center;
+    margin-left: -7px;
+    margin-right: -7px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+p {
+    font-size: 16px;
+}
+
+button {
+    background-color: var(--darkgrey);
+    color: var(--white);
+}
+

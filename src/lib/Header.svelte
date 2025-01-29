@@ -1,3 +1,3 @@
 <header>
-    <h1>Hello World</h1>
+    <h1>Artistry Hub</h1>
 </header>

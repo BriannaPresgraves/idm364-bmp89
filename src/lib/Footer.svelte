@@ -1,3 +1,3 @@
 <footer>
-    &copy; 2025 Name
+    &copy; 2025 Artistry Hub
 </footer>
