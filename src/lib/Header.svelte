@@ -12,6 +12,7 @@
 <style>
 
 .cart {
+    cursor: pointer;
     height: 50px;
     width: 50px;
     display: flex;
