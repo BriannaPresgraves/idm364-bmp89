@@ -1,5 +1,5 @@
 <script>
-    import {products} from '$lib/utils.js';
+    import {products} from '$lib/data.js';
     import ProdCard from "$lib/ProdCard.svelte";
 
     const groupedProducts = products.reduce((acc, product) => {
