@@ -1,11 +1,11 @@
 <script>
-    import Cart from '$lib/imgs/cart.png';
+    import cart from '$lib/imgs/cart.png';
 </script>
 
 <header>
     <h1 class="shop">Artistry Hub</h1>
     <button class="cart">
-        <img src={Cart} alt="cart" width="29" height="29.02">
+        <img src={cart} alt="cart" width="29" height="29.02">
     </button>
 </header>
 
