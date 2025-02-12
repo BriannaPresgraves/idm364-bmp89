@@ -1,28 +1,50 @@
 <script>
     import {products} from '$lib/data.js';
-    import ProdCard from "$lib/ProdCard.svelte";
+    import { slugify } from '$lib/utils';
 
-    const groupedProducts = products.reduce((acc, product) => {
-            if (!acc[product.type]) acc[product.type] = [];
-            acc[product.type].push(product);
-            return acc;
-        }, {});
+    const groupedProducts = {};
+  products.forEach(product => {
+    if (!groupedProducts[product.type]) {
+      groupedProducts[product.type] = [];
+    }
+    groupedProducts[product.type].push(product);
+  });
 </script>
 
-<div class="shop">
-    {#each Object.keys(groupedProducts) as type}
-        <div class="prodtype">
-            <h1>{type}</h1>
-        </div>
-        <div class="prodcards">
-            {#each groupedProducts[type] as product}
-                <ProdCard {product} />
-            {/each}
-        </div>
+<h1>Shop</h1>
+{#each Object.entries(groupedProducts) as [type, items]}
+  <h2>{type}</h2>
+  <div class="product-grid">
+    {#each items as { name, price, image }}
+      <div class="product-tile">
+        <img src={image} alt={name} />
+        <h3>{name}</h3>
+        <p>${price}</p>
+        <a href="/products/{slugify(name)}">View Details</a>
+      </div>
     {/each}
-    </div>
+  </div>
+{/each}
     
     <style>
+
+    .product-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px; 
+    }
+
+    .product-tile { 
+        border: 1px solid #ccc; 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+    .product-tile img { 
+        max-width: 100%; 
+        height: auto; 
+    }
+        
         .shop {
 
         }
