@@ -44,25 +44,4 @@
         max-width: 100%; 
         height: auto; 
     }
-        
-        .shop {
-
-        }
-
-        .prodtype {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .prodcards {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-    
     </style>
