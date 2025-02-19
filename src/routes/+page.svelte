@@ -14,7 +14,7 @@
 
 <div class="shoppage">
 {#each Object.entries(groupedProducts) as [type, items]}
-  <h2>{type}</h2>
+  <h2 class="type">{type}</h2>
   <div class="product-grid">
     {#each items as { name, price, image }}
       <div class="product-tile">
@@ -31,14 +31,17 @@
 <style>
 
 .shoppage {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.type {
+  margin-top: 3rem;
 }
 
 .product-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
     place-items: center;
 }
 
@@ -47,14 +50,17 @@
   border-radius: 20px;
   padding: 10px;
   text-align: center;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .product-tile img { 
-    max-width: 100%; 
+    max-width: 70%;
     height: auto; 
+    border-radius: 20px;
+    border: 2px solid black;
 }
 </style>

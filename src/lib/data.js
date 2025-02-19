@@ -57,7 +57,7 @@ export const products = [
     },
     {
         id:8,
-        name: 'Stretched Canvas (3-Pack, 11"x14")',
+        name: 'Stretched Canvas (3-Pack)',
         price: 18.99,
         type: "Paper and Canvas",
         description: "These premium pre-stretched and primed canvases are ready to use with acrylic or oil paints. Each canvas is stretched over a sturdy wooden frame and primed with acid-free gesso, offering a smooth and consistent surface for painting.",
