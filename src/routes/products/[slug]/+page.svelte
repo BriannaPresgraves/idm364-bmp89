@@ -24,7 +24,7 @@
 
 .name {
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
 .info {

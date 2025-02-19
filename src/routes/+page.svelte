@@ -1,5 +1,4 @@
 <script>
-    import Prodcard from '$lib/Prodcard.svelte';
     import {products} from '$lib/data.js';
     import { slugify } from '$lib/utils';
 
