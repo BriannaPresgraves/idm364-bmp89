@@ -43,6 +43,19 @@ footer {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
 p {
     font-size: 16px;
+}
+
+.product-tile {
+    background-color: var(--blue);
+    color: var(--white);
 }

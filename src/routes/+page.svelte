@@ -1,4 +1,5 @@
 <script>
+    import Prodcard from '$lib/Prodcard.svelte';
     import {products} from '$lib/data.js';
     import { slugify } from '$lib/utils';
 
@@ -11,7 +12,7 @@
   });
 </script>
 
-<h1>Shop</h1>
+<div class="shoppage">
 {#each Object.entries(groupedProducts) as [type, items]}
   <h2>{type}</h2>
   <div class="product-grid">
@@ -25,23 +26,34 @@
     {/each}
   </div>
 {/each}
+</div>
     
-    <style>
+<style>
 
-    .product-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px; 
-    }
+.shoppage {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
 
-    .product-tile { 
-        border: 1px solid #ccc; 
-        padding: 10px; 
-        text-align: center; 
-    }
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    place-items: center;
+}
 
-    .product-tile img { 
-        max-width: 100%; 
-        height: auto; 
-    }
-    </style>
+.product-tile { 
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-tile img { 
+    max-width: 100%; 
+    height: auto; 
+}
+</style>
