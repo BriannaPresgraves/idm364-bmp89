@@ -20,7 +20,7 @@
       <div class="product-tile">
         <img src={image} alt={name} />
         <h3>{name}</h3>
-        <p>${price}</p>
+        <p class="price">${price}</p>
         <a href="/products/{slugify(name)}">View Details</a>
       </div>
     {/each}
@@ -36,7 +36,7 @@
 }
 
 .type {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 .product-grid { 
@@ -63,4 +63,9 @@
     border-radius: 20px;
     border: 2px solid black;
 }
+
+.price {
+  margin-top: 0%;
+}
+
 </style>

@@ -44,7 +44,7 @@ footer {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 26px;
 }
 
 h3 {
@@ -55,7 +55,23 @@ p {
     font-size: 16px;
 }
 
+
+a {
+    font-size: 16px;
+    color: var(--white);
+  }
+  
+  a:hover {
+    color: var(--grey);
+  }
+  
+  a:visited {
+    color: var(--gold);
+  }
+
 .product-tile {
     background-color: var(--blue);
     color: var(--white);
 }
+
+
