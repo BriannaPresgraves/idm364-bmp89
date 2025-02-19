@@ -1,5 +1,5 @@
 <script>
-    import carts from '$lib/imgs/cart.png';
+    import carts from '$lib/img/cart.png';
     import { goto } from '$app/navigation';
     import { cart } from '$lib/stores/cart';
     import { derived } from 'svelte/store';
