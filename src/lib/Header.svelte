@@ -1,5 +1,5 @@
 <script>
-    import carts from '$lib/img/cart.png';
+    import carts from '$lib/img/cart.svg';
     import { goto } from '$app/navigation';
     import { cart } from '$lib/stores/cart';
     import { derived } from 'svelte/store';
@@ -32,7 +32,7 @@
     height: 50px;
     width: 50px;
     display: flex;
-    background-color: #e2f4fc;
+    background-color: black;
     border: none;
     align-items: center;
     justify-content: center;

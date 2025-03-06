@@ -3,7 +3,7 @@
     --lightblue: #e2f4fc;
     --lightgrey: #e6e5e1;
     --grey: #e3e3e3;
-    --gold: #e8c8a1;
+    --gold: #eab677;
     --pink: #F6828C;
     --purple: #A167A5;
     --blue: #293b7a;
@@ -24,18 +24,18 @@ body {
 }
 
 header {
-    background-color: var(--lightblue);
+    background-color: black;
     display: flex;
     padding-left: 1rem;
-    color: var(--black);
+    color: var(--white);
     font-style: italic;
     font-size: 16px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 footer {
-    background-color: var(--lightblue);
-    color: var(--black);
+    background-color: var(--black);
+    color: var(--white);
     margin-top: 2rem;
     padding: 1rem;
     font-size: 13px;
@@ -70,7 +70,7 @@ a {
   }
 
 .product-tile {
-    background-color: var(--blue);
+    background-color: #230b6e;
     color: var(--white);
 }
 
