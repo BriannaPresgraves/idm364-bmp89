@@ -8,7 +8,7 @@
   <div class="info">
     <img class="prodimg" src={image} alt={name} />
     <div class="textinfo">
-      <p class="price">Price: ${price}</p>
+      <h3 class="price">Price: ${price}</h3>
       <p class="desc">{description}</p>
       <a href="/">Back to Shop</a>
     </div>
