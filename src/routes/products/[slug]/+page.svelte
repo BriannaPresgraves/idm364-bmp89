@@ -4,13 +4,13 @@
 </script>
   
 <div class="proddetail">
-  <h2 class="name">{product.name}</h2>
+  <a href="/">Back to Shop</a>
   <div class="info">
     <img class="prodimg" src={product.image} alt={product.name} />
     <div class="textinfo">
+      <h2 class="name">{product.name}</h2>
       <h3 class="price">Price: {product.price}</h3>
       <p class="desc">{product.description}</p>
-      <a href="/">Back to Shop</a>
     </div>
   </div>
 </div>
@@ -23,8 +23,7 @@
 }
 
 .name {
-  text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .info {
