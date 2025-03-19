@@ -1,9 +1,26 @@
+import { supabase } from '$lib/server/supabase_client.js';
 import { error } from '@sveltejs/kit';
-import { slugify } from '$lib/utils';
-import { products } from '$lib/data';
 
-export function load({ params }) {
-  const product = products.find(p => slugify(p.name) === params.slug);
-  if (!product) throw error(404, 'Product not found');
-  return { product };
+export async function load({ params }) {
+  const { slug } = params;
+
+  // Fetch current product
+  const { data: product, error: productError } = await supabase
+    .from('products')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (productError) {
+    console.error("Supabase Error:", productError);
+    throw error(500, productError.message);
+  }
+  
+  if (!product) {
+    throw error(404, 'Product not found');
+  }
+
+  return {
+    product,
+  };
 }

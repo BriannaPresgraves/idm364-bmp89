@@ -1,15 +1,15 @@
 <script>
-    const { data } = $props();
-    const { name, price, image, description } = data.product;
-  </script>
+    export let data;
+    const { product } = data;
+</script>
   
 <div class="proddetail">
-  <h2 class="name">{name}</h2>
+  <h2 class="name">{product.name}</h2>
   <div class="info">
-    <img class="prodimg" src={image} alt={name} />
+    <img class="prodimg" src={product.image} alt={product.name} />
     <div class="textinfo">
-      <h3 class="price">Price: ${price}</h3>
-      <p class="desc">{description}</p>
+      <h3 class="price">Price: {product.price}</h3>
+      <p class="desc">{product.description}</p>
       <a href="/">Back to Shop</a>
     </div>
   </div>

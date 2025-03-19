@@ -1,6 +1,8 @@
 <script>
-    import {products} from '$lib/data.js';
     import { slugify } from '$lib/utils';
+
+    export let data;
+    const { products } = data;
 
     const groupedProducts = {};
   products.forEach(product => {
@@ -19,7 +21,7 @@
       <div class="product-tile">
         <img src={image} alt={name} />
         <h3>{name}</h3>
-        <p class="price">${price}</p>
+        <p class="price">{price}</p>
         <a href="/products/{slugify(name)}">View Details</a>
       </div>
     {/each}
