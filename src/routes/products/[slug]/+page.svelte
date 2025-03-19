@@ -4,7 +4,9 @@
 </script>
   
 <div class="proddetail">
-  <a href="/">Back to Shop</a>
+  <div>
+    <a href="/" class="backtoshop"> <span class="arrow">&#8592;</span> Back to Shop</a>
+  </div>
   <div class="info">
     <img class="prodimg" src={product.image} alt={product.name} />
     <div class="textinfo">
@@ -20,6 +22,11 @@
 .proddetail {
   margin: auto 3rem ;
   padding: 20px;
+}
+
+.arrow {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .name {

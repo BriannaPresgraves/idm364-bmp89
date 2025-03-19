@@ -6,7 +6,7 @@
     --gold: #eab677;
     --pink: #F6828C;
     --purple: #A167A5;
-    --blue: #293b7a;
+    --blue: #230b6e;
     --darkblue: #2b2d42;
     --darkgrey: #2e2e2e;
     --black: #000000;
@@ -55,23 +55,34 @@ p {
     font-size: 16px;
 }
 
-
 a {
     font-size: 16px;
     color: var(--white);
   }
   
-  a:hover {
+a:hover {
     color: var(--grey);
-  }
+}
   
-  a:visited {
+a:visited {
     color: var(--gold);
-  }
+}
 
 .product-tile {
-    background-color: #230b6e;
+    background-color: var(--blue);
     color: var(--white);
 }
 
+.backtoshop {
+    font-size: 16px;
+    color: var(--blue);
+    text-decoration: none;
+}
 
+.proddetail .backtoshop:hover {
+    color: var(--black);
+}
+
+.backtoshop:visited {
+    color: var(--blue);
+}
