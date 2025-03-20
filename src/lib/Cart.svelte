@@ -89,6 +89,14 @@
         margin-top: 2rem;
     }
 
+    a {
+        background-color: var(--gold);
+    }
+
+    a:hover {
+        background-color: #a66d00;
+    }
+
     .cart-layout {
         margin-left: 3.3rem;
         margin-right: 3.3rem;
