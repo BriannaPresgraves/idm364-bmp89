@@ -2,9 +2,11 @@
     export let product;
 
     import { addToCart } from '$lib/stores/cart.js';
+    import { goto } from '$app/navigation';
 
     function handleAddToCart() {
         addToCart(product);
+        goto('/cart'); 
     }
 </script>
     
