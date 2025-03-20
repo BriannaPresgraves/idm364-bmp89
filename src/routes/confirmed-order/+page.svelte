@@ -41,6 +41,7 @@
         border-radius: 20px;
         background-color: var(--gold);
         transition: color 0.3s ease;
+        cursor: pointer;
     }
 
     .home-btn:hover {
