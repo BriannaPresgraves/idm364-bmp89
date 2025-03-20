@@ -86,3 +86,19 @@ a:visited {
 .backtoshop:visited {
     color: var(--blue);
 }
+
+.addtocart {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    padding: 10px 0px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    width: 150px;
+  }
+
+  .addtocart:hover {
+    background-color: var(--darkblue);
+  }

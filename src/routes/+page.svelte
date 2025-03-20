@@ -1,34 +1,29 @@
 <script>
-    import { slugify } from '$lib/utils';
+  import ProductCard from '$lib/ProdCard.svelte';
 
-    export let data;
-    const { products } = data;
+  export let data;
+  const { products } = data;
 
-    const groupedProducts = {};
+  const groupedProducts = {};
   products.forEach(product => {
-    if (!groupedProducts[product.type]) {
-      groupedProducts[product.type] = [];
-    }
-    groupedProducts[product.type].push(product);
+      if (!groupedProducts[product.type]) {
+          groupedProducts[product.type] = [];
+      }
+      groupedProducts[product.type].push(product);
   });
 </script>
 
 <div class="shoppage">
-{#each Object.entries(groupedProducts) as [type, items]}
-  <h2 class="type">{type}</h2>
-  <div class="product-grid">
-    {#each items as { name, price, image }}
-      <div class="product-tile">
-        <img src={image} alt={name} />
-        <h3>{name}</h3>
-        <p class="price">{price}</p>
-        <a href="/products/{slugify(name)}">View Details</a>
+  {#each Object.entries(groupedProducts) as [type, items]}
+      <h2 class="type">{type}</h2>
+      <div class="product-grid">
+          {#each items as product}
+              <ProductCard {product} />
+          {/each}
       </div>
-    {/each}
-  </div>
-{/each}
+  {/each}
 </div>
-    
+
 <style>
 
 .shoppage {
@@ -41,32 +36,9 @@
 }
 
 .product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    place-items: center;
-}
-
-.product-tile { 
-  border: 2px solid black;
-  border-radius: 20px;
-  padding: 10px;
-  text-align: center;
-  width: 75%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.product-tile img { 
-    max-width: 70%;
-    height: auto; 
-    border-radius: 20px;
-    border: 2px solid black;
-}
-
-.price {
-  margin-top: 0%;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  place-items: center;
 }
 
 </style>

@@ -12,13 +12,18 @@
         goto('/');
     }
 
-    const hasItemsInCart = derived(cart, $cart => $cart.length > 0);
+    const cartItemCount = derived(cart, $cart => 
+        $cart.reduce((total, item) => total + item.quantity, 0)
+    );
 </script>
 
 <header>
     <h1 on:click={goToHome} class="shop">Artistry Hub</h1>
     <button on:click={goToCart} class="cart">
         <img src={carts} alt="cart" width="29" height="29.02">
+        {#if $cartItemCount > 0}
+            <span class="count">{$cartItemCount}</span>
+        {/if}
     </button>
 </header>
 
@@ -39,6 +44,18 @@
     margin: 0.9rem;
     margin-right: 1rem;
     margin-left: auto;
+    position: relative;
+}
+
+.count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 12px;
 }
 
 </style>
