@@ -90,11 +90,11 @@
     }
 
     a {
-        background-color: var(--gold);
+        color: var(--gold);
     }
 
     a:hover {
-        background-color: #a66d00;
+        color: #a66d00;
     }
 
     .cart-layout {
