@@ -24,6 +24,15 @@ export function addToCart(product) {
   });
 }
 
+// Update quantity of an item
+export function updateCartItem(itemId, quantity) {
+  cart.update(items => {
+      return items.map(item =>
+          item.id === itemId ? { ...item, quantity } : item
+      );
+  });
+}
+
 // Remove item from cart
 export function removeFromCart(productId) {
   cart.update(items => items.filter(item => item.id !== productId));

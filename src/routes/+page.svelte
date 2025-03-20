@@ -41,4 +41,29 @@
   place-items: center;
 }
 
+@media (max-width: 768px) {
+  .shoppage {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 630px) {
+  .shoppage {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .type {
+    text-align: center;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

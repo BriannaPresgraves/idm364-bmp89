@@ -58,4 +58,17 @@
     font-size: 12px;
 }
 
+@media (max-width: 480px) {
+    .cart {
+        height: 25px;
+        width: 25px;
+    }
+
+    .count {
+        top: -10px;
+        right: -10px;
+        padding: 1px 4px;
+    }
+}
+
 </style>

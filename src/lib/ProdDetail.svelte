@@ -69,5 +69,51 @@
     line-height: 1.5;
     margin-bottom: 30px;
   }
-  
-  </style>
+
+@media (max-width: 768px) {
+    .proddetail {
+        margin: auto 1rem;
+    }
+
+    .name {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .info {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .prodimg {
+        max-width: 70%;
+        margin-right: 0;
+    }
+
+    .textinfo {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .desc {
+        margin-top: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .addtocart {
+        align-self: center;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .arrow {
+        font-size: 1.2rem;
+    }
+
+    .desc {
+        text-align: left;
+    }
+}
+</style>

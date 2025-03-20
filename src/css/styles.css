@@ -1,11 +1,8 @@
 :root {
     --white: #ffffff;
-    --lightblue: #e2f4fc;
-    --lightgrey: #e6e5e1;
     --grey: #e3e3e3;
-    --gold: #eab677;
-    --pink: #F6828C;
-    --purple: #A167A5;
+    --gold: #c27c0e;
+    --darkgold: #a66d00;
     --blue: #230b6e;
     --darkblue: #2b2d42;
     --darkgrey: #2e2e2e;
@@ -55,19 +52,6 @@ p {
     font-size: 16px;
 }
 
-a {
-    font-size: 16px;
-    color: var(--white);
-  }
-  
-a:hover {
-    color: var(--grey);
-}
-  
-a:visited {
-    color: var(--gold);
-}
-
 .product-tile {
     background-color: var(--blue);
     color: var(--white);
@@ -102,3 +86,45 @@ a:visited {
   .addtocart:hover {
     background-color: var(--darkblue);
   }
+
+  @media (max-width: 930px) {
+    h3 {
+        font-size: 16px;
+    }
+}
+
+  @media (max-width: 768px) {
+    h2 {
+        font-size: 22px;
+    }
+
+    .product-tile {
+        font-size: 14px;
+    }
+
+    .addtocart {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    .addtocart {
+        font-size: 12px;
+    }
+
+    p{
+        font-size: 14px;
+    }
+}

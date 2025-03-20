@@ -1,5 +1,5 @@
 <script>
-    import { cart, removeFromCart } from '$lib/stores/cart.js';
+    import { cart, removeFromCart, updateCartItem } from '$lib/stores/cart.js';
     import { goto } from '$app/navigation';
     import trash from '$lib/img/trashcan.svg';
 
@@ -11,75 +11,84 @@
     function continueShopping() {
         goto('/');
     }
+
+    // Update quantity with plus/minus buttons
+    function updateQuantity(itemId, newQuantity) {
+        if (newQuantity > 0) {
+            updateCartItem(itemId, newQuantity);
+        }
+    }
+
+    // Plus button
+    function increaseQuantity(itemId, currentQuantity) {
+        updateQuantity(itemId, currentQuantity + 1);
+    }
+
+    // Minus button
+    function decreaseQuantity(itemId, currentQuantity) {
+        if (currentQuantity > 1) {
+            updateQuantity(itemId, currentQuantity - 1);
+        }
+    }
 </script>
 
-<div class="cart-container">
-    <h2 class="cart-title">Shopping Cart</h2> <!-- Shopping Cart Title -->
+<div class="cart">
+    <h2 class="carttitle">Shopping Cart</h2>
 
     {#if $cart.length === 0}
-        <p class="empty-cart">Your cart is empty. Go back to the <a href="/" class="shop-link">shop</a> to add some items.</p>
-        {:else}
-            <div class="cart-layout">
-                <!-- Left: Cart Items -->
-                <div class="cart-items">
-                    {#each $cart as item}
-                        <div class="cart-item">
-                            <img src={item.image} alt={item.name} class="cart-item-image" />
-                            <div class="cart-item-details">
-                                <h3 class="cart-item-name">{item.name}</h3>
-                                <p class="cart-item-price">Price: <span>${item.price}</span></p>
-                                <p class="cart-item-quantity">Quantity: {item.quantity}</p>
-                                <button on:click={() => removeFromCart(item.id)} class="remove-btn"><img src={trash} alt="trashcan" width="15" height="15"></button>
+        <p class="empty-cart">Your cart is empty. Go back to the <a href="/">shop</a> to add some items.</p>
+    {:else}
+        <div class="cart-layout">
+            <div class="cart-items">
+                {#each $cart as item}
+                    <div class="cart-item">
+                        <img src={item.image} alt={item.name} class="cartimg" />
+                        <div class="cartdetails">
+                            <h3 class="cartname">{item.name}</h3>
+                            <p class="cartprice">Price: <span>${(item.price * item.quantity).toFixed(2)}</span></p>
+                            <div class="quantity-container">
+                                <button class="quantity-btn" on:click={() => decreaseQuantity(item.id, item.quantity)}>-</button>
+                                <span class="quantity">{item.quantity}</span>
+                                <button class="quantity-btn" on:click={() => increaseQuantity(item.id, item.quantity)}>+</button>
                             </div>
+                            <button on:click={() => removeFromCart(item.id)} class="remove">
+                                <img src={trash} alt="trashcan" width="15" height="15" />
+                            </button>
                         </div>
-                    {/each}
-                </div>
-
-                <!-- Right: Order Summary -->
-                <div class="cart-summary">
-                    <h3 class="summary-title">Order Summary</h3>
-                    <div class="total-box">
-                        <p>Total:</p>
-                        <p class="total-amount">${totalPrice.toFixed(2)}</p>
                     </div>
-                    <button on:click={onCheckout} class="checkout-btn">Proceed to Checkout</button>
-                    <button on:click={continueShopping} class="continue-btn">Continue Shopping</button>
-                </div>
+                {/each}
             </div>
-        {/if}
+
+            <div class="summary">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="total">
+                    <p>Total:</p>
+                    <p class="total-amount">${totalPrice.toFixed(2)}</p>
+                </div>
+                <button on:click={onCheckout} class="checkout-btn">Proceed to Checkout</button>
+                <button on:click={continueShopping} class="continue-btn">Continue Shopping</button>
+            </div>
+        </div>
+    {/if}
 </div>
 
 <style>
-    /* Page Layout */
-    .cart-container {
+    .cart {
         margin-left: 3rem;
         margin-right: 3rem;
     }
 
-    /* Title aligned with product type from shop page */
-    .cart-title {
+    .carttitle {
         margin-top: 2.5rem;
-        font-size: 1.5rem;   /* Adjust to match product type title */
+        font-size: 1.5rem;
         font-weight: bold;
     }
 
-    /* Empty Cart */
     .empty-cart {
-        font-size: 1.1rem;
-        text-align: center;
+        text-align: left;
         margin-top: 2rem;
     }
 
-    .shop-link {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    .shop-link:hover {
-        text-decoration: underline;
-    }
-
-    /* Cart Layout */
     .cart-layout {
         margin-left: 3.3rem;
         margin-right: 3.3rem;
@@ -89,7 +98,6 @@
         gap: 10rem;
     }
 
-    /* Left Side - Cart Items */
     .cart-items {
         flex: 2;
         display: flex;
@@ -103,13 +111,12 @@
         display: flex;
         padding: 12px;
         border: 1px solid #ddd;
-        border-radius: 20px;
         background: white;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         position: relative;
     }
 
-    .cart-item-image {
+    .cartimg {
         width: 100px;
         height: 100px;
         object-fit: cover;
@@ -117,31 +124,52 @@
         border-radius: 20px;
     }
 
-    .cart-item-details {
+    .cartdetails {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
-    .cart-item-name {
-        font-size: 1rem;
+    .cartname {
         font-weight: bold;
         margin-bottom: 5px;
     }
 
-    .cart-item-price {
-        font-size: 1rem;
+    .cartprice {
         margin-bottom: 5px;
     }
 
-    .cart-item-quantity {
-        font-size: 0.9rem;
-        color: #555;
+    .quantity-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        width: fit-content;
     }
 
-    /* Remove Button positioned to top right */
-    .remove-btn {
+    .quantity-btn {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quantity {
+        font-size: 16px;
+        font-weight: bold;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .remove {
         position: absolute;
         top: 10px;
         right: 10px;
@@ -153,51 +181,46 @@
         border-radius: 20px;
     }
 
-    .remove-btn:hover img {
-    filter: brightness(0.5); /* Darken the icon on hover */
-}
+    .remove:hover img {
+        filter: brightness(0.5);
+    }
 
-    /* Right Side - Order Summary */
-    .cart-summary {
+    .summary {
         flex: 1;
-        padding: 12px; /* Reduced padding */
-        border-radius: 20px;
+        padding: 12px;
         background: white;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        min-width: 250px; /* Reduced min-width */
+        min-width: 250px;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.8rem; /* Reduced gap between elements */
+        gap: 0.8rem;
     }
 
-    /* Order Summary Title */
     .summary-title {
-        font-size: 1.1rem; /* Smaller title font size */
+        font-size: 1.1rem;
         font-weight: bold;
         margin-bottom: 0.8rem;
     }
 
-    /* Total Price Box */
-    .total-box {
+    .total {
         display: flex;
         justify-content: space-between;
         width: 80%;
-        font-size: 1.1rem; /* Smaller font size */
+        font-size: 1.1rem;
         font-weight: bold;
         margin-bottom: 1rem;
     }
 
-    /* Buttons */
     .checkout-btn, .continue-btn {
         width: 80%;
-        padding: 10px; /* Reduced padding */
-        font-size: 0.9rem; /* Smaller font size */
+        padding: 10px;
+        font-size: 0.9rem;
         cursor: pointer;
         border-radius: 20px;
         border: none;
-        margin-bottom: 0.6rem; /* Reduced space between buttons */
+        margin-bottom: 0.6rem;
     }
 
     .checkout-btn {
@@ -218,16 +241,140 @@
         background-color: #a66d00;
     }
 
-    /* Responsive Design */
-    @media (max-width: 900px) {
-        .cart-layout {
-            flex-direction: column;
-            align-items: center;
-        }
-        .cart-summary {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 2rem;
-        }
+@media (max-width: 1045px) {
+    .cart-layout {
+        gap: 5rem;
     }
+}
+
+@media (max-width: 960px) {
+    .cart-layout {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 890px) {
+    .cart-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-items {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .cartimg {
+        width: 120px;
+        height: 120px;
+    }
+
+    .cartdetails {
+        align-items: center;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .quantity-container {
+        margin-top: 1rem;
+        border-radius: 20px;
+        padding: 5px 10px;
+        width: fit-content;
+        border: 1px solid #ddd;
+    }
+
+    .quantity-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem; 
+    }
+
+    .quantity {
+        font-size: 14px; 
+        min-width: 30px;
+    }
+
+    .summary {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 2rem;
+    }
+
+    .checkout-btn, .continue-btn {
+        width: 60%;
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .total {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+}
+
+@media (max-width: 730px) {
+    .cart-layout {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .carttitle {
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    .empty-cart {
+        text-align: center;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cartimg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .remove {
+        top: 5px;
+        right: 5px;
+    }
+
+    .quantity-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 1rem;
+    }
+
+    .quantity {
+        font-size: 14px;
+        min-width: 30px;
+    }
+
+    .checkout-btn, .continue-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 350px) {
+
+    .cartimg {
+        width: 150px;
+        height: 150px;
+    }
+
+}
 </style>
